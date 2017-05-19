@@ -1,0 +1,7 @@
+XTCategoryItemView.xcodeproj/xcuserdata/
+XTCategoryItemView.xcworkspace/
+Pods/
+*.swp
+Podfile.lock
+.DS_Store
+XTCategoryItemView.xcodeproj/project.xcworkspace/xcuserdata/

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry1_icon</string>
+		<key>title</key>
+		<string>颐居生活</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry2_icon</string>
+		<key>title</key>
+		<string>颐洁家政</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry3_icon</string>
+		<key>title</key>
+		<string>颐态食品</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry4_icon</string>
+		<key>title</key>
+		<string>颐慈文化</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry5_icon</string>
+		<key>title</key>
+		<string>颐协健康</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry6_icon</string>
+		<key>title</key>
+		<string>颐闲运动</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry7_icon</string>
+		<key>title</key>
+		<string>颐行度假</string>
+	</dict>
+	<dict>
+		<key>imageName</key>
+		<string>home_cateogry8_icon</string>
+		<key>title</key>
+		<string>颐彩社区</string>
+	</dict>
+</array>
+</plist>
