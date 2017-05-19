@@ -4,7 +4,8 @@ pod "XTCategoryItemView"
 ![image](https://github.com/XiangtaiCompany/XTCategoryItemView/blob/master/demo.png)
 
 - 使用方法
-```
+
+```Objective-C
     //1.初始化
     XTCategoryItemView *view = [[XTCategoryItemView alloc] init];
     //默认宽高根据maxRow自动计算（宽默认为整个屏幕的宽），只用设置x和y
@@ -45,5 +46,4 @@ pod "XTCategoryItemView"
     - (void)xtCategoryItemView:(XTCategoryItemView *)view didSelectItemAtIndex:(NSUInteger)index {
     NSLog(@"%ld", index);
 }
-
 ```
