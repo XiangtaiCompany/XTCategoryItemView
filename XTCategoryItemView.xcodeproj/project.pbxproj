@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D7759441F580DEA00788A45 /* XTCategoryConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D7759431F580DEA00788A45 /* XTCategoryConfiguration.m */; };
 		5DD31B381ECD897700AD9782 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD31B371ECD897700AD9782 /* main.m */; };
 		5DD31B3B1ECD897700AD9782 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD31B3A1ECD897700AD9782 /* AppDelegate.m */; };
 		5DD31B3E1ECD897700AD9782 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD31B3D1ECD897700AD9782 /* ViewController.m */; };
@@ -21,6 +22,8 @@
 
 /* Begin PBXFileReference section */
 		4266DC71AC381344645A1C01 /* Pods-XTCategoryItemView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-XTCategoryItemView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-XTCategoryItemView/Pods-XTCategoryItemView.debug.xcconfig"; sourceTree = "<group>"; };
+		5D7759421F580DEA00788A45 /* XTCategoryConfiguration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTCategoryConfiguration.h; sourceTree = "<group>"; };
+		5D7759431F580DEA00788A45 /* XTCategoryConfiguration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTCategoryConfiguration.m; sourceTree = "<group>"; };
 		5DD31B331ECD897700AD9782 /* XTCategoryItemView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XTCategoryItemView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD31B371ECD897700AD9782 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		5DD31B391ECD897700AD9782 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 				5DD31B511ECD8A4A00AD9782 /* XTCategoryItemView.m */,
 				5DD31B531ECD8D0A00AD9782 /* XTCategoryItemCell.h */,
 				5DD31B541ECD8D0A00AD9782 /* XTCategoryItemCell.m */,
+				5D7759421F580DEA00788A45 /* XTCategoryConfiguration.h */,
+				5D7759431F580DEA00788A45 /* XTCategoryConfiguration.m */,
 			);
 			path = XTCategoryItemView;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 			files = (
 				5DD31B3E1ECD897700AD9782 /* ViewController.m in Sources */,
 				5DD31B3B1ECD897700AD9782 /* AppDelegate.m in Sources */,
+				5D7759441F580DEA00788A45 /* XTCategoryConfiguration.m in Sources */,
 				5DD31B381ECD897700AD9782 /* main.m in Sources */,
 				5DD31B521ECD8A4A00AD9782 /* XTCategoryItemView.m in Sources */,
 				5DD31B551ECD8D0A00AD9782 /* XTCategoryItemCell.m in Sources */,
@@ -413,6 +419,7 @@
 				5DD31B4C1ECD897700AD9782 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

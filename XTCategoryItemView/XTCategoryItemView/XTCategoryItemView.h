@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, XTCategoryItemViewScrollDirection) {
 @end
 
 
+@class XTCategoryConfiguration;
 @interface XTCategoryItemView : UIView
 /**
  delegate
@@ -41,31 +42,9 @@ typedef NS_ENUM(NSUInteger, XTCategoryItemViewScrollDirection) {
  */
 @property (nonatomic) XTCategoryItemViewScrollDirection scrollDirection;
 /**
- a row have item max count, default 5
+ udpate configuration, such as: maxRow, maxCountAtRow, titleLabelFont
  */
-@property (nonatomic) NSUInteger maxCountAtRow;
-/**
- max row count, default 2
- */
-@property (nonatomic) NSUInteger maxRow;
-/**
- item title label font, default system default font
- */
-@property (nonatomic, nullable, strong) UIFont *titleLabelFont;
-/**
- item title label text color, default black color
- */
-@property (nonatomic, nullable, strong) UIColor *titleLabelTextColor;
-/**
- if scrollDirection is XTCategoryItemViewScrollDirectionHorizontal and 
- the pages more than 1, you will display UIPageControl,
- you can setting pageIndicatorTintColor
- */
-@property (nonatomic, nullable, strong) UIColor *pageIndicatorTintColor NS_AVAILABLE_IOS(6_0) UI_APPEARANCE_SELECTOR;
-/**
- you can setting currentPageIndicatorTintColor
- */
-@property (nonatomic, nullable, strong) UIColor *currentPageIndicatorTintColor NS_AVAILABLE_IOS(6_0) UI_APPEARANCE_SELECTOR;;
+- (void)updateConfiguration:(void(^)(XTCategoryConfiguration *config))configBlock;
 
 @end
 NS_ASSUME_NONNULL_END

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "XTCategoryItemView.h"
+#import "XTCategoryConfiguration.h"
 
 @interface ViewController ()<XTCategoryItemViewDelegate>
 
@@ -23,12 +24,21 @@
     view.frame = CGRectMake(0, 100, 0, 0);
     view.backgroundColor = [UIColor groupTableViewBackgroundColor];
     view.scrollDirection = XTCategoryItemViewScrollDirectionHorizontal;
-    view.maxCountAtRow = 4;
-    view.maxRow = 2;
-    view.titleLabelFont = [UIFont systemFontOfSize:14];
-    view.titleLabelTextColor = [UIColor redColor];
     view.delegate = self;
     [self.view addSubview:view];
+    [view updateConfiguration:^(XTCategoryConfiguration * _Nonnull config) {
+        //one config way
+        config.maxCountAtRow = 4;
+        config.maxRow = 2;
+        config.titleLabelFont = [UIFont systemFontOfSize:14];
+        config.titleLabelTextColor = [UIColor redColor];
+
+        //second config way
+//        config.configMaxRow(2)
+//              .configMaxCountAtRow(4)
+//              .configTitleLabelFont([UIFont systemFontOfSize:14])
+//              .configTtitleLabelTextColor([UIColor redColor]);
+    }];
     
     NSString *path = [[NSBundle mainBundle] pathForResource:@"HomeCategory.plist" ofType:nil];
     NSArray *array = [NSArray arrayWithContentsOfFile:path];

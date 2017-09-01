@@ -8,6 +8,7 @@
 
 #import "XTCategoryItemView.h"
 #import "XTCategoryItemCell.h"
+#import "XTCategoryConfiguration.h"
 
 
 static NSString *const ReuseIdentifier = @"itemCell";
@@ -16,6 +17,7 @@ static NSString *const ReuseIdentifier = @"itemCell";
 @property (nonatomic, nullable, strong) UICollectionView *collectionView;
 @property (nonatomic, nullable, strong) UICollectionViewFlowLayout *layout;
 @property (nonatomic, nullable, strong) UIPageControl *pageControl;
+@property (nonatomic, nullable, strong) XTCategoryConfiguration *configation;
 
 @end
 
@@ -31,8 +33,7 @@ static NSString *const ReuseIdentifier = @"itemCell";
 
 
 - (void)setupViews {
-    self.maxCountAtRow = 5;
-    self.maxRow = 2;
+
     [self addSubview:self.collectionView];
     [self addSubview:self.pageControl];
     [self.collectionView registerClass:[XTCategoryItemCell class] forCellWithReuseIdentifier:ReuseIdentifier];
@@ -50,12 +51,23 @@ static NSString *const ReuseIdentifier = @"itemCell";
 
 - (void)setupPageControl {
     if (self.titles.count) {
-        NSUInteger numbers = self.titles.count / (self.maxCountAtRow * self.maxRow);
-        self.pageControl.numberOfPages = self.titles.count % self.maxCountAtRow == 0 ? numbers : numbers + 1;
+        NSUInteger numbers = self.titles.count / (self.configation.maxCountAtRow * self.configation.maxRow);
+        self.pageControl.numberOfPages = self.titles.count % self.configation.maxCountAtRow == 0 ? numbers : numbers + 1;
         if (self.pageControl.numberOfPages == 1) {
             [self layoutIfNeeded];
         }
     }
+}
+
+- (void)updateConfiguration:(void(^)(XTCategoryConfiguration *config))configBlock {
+    if (configBlock) {
+        configBlock(self.configation);
+    }
+    self.pageControl.pageIndicatorTintColor = self.configation.pageIndicatorTintColor;
+    self.pageControl.currentPageIndicatorTintColor = self.configation.currentPageIndicatorTintColor;
+    [self setupPageControl];
+    [self.collectionView reloadData];
+    
 }
 
 #pragma marl - UICollectionViewDelegate && UICollectionViewDataSource
@@ -65,7 +77,7 @@ static NSString *const ReuseIdentifier = @"itemCell";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat itemW = CGRectGetWidth([UIScreen mainScreen].bounds) / self.maxCountAtRow;
+    CGFloat itemW = CGRectGetWidth([UIScreen mainScreen].bounds) / self.configation.maxCountAtRow;
     CGFloat itemH = itemW + 20;
     CGSize itemSize = CGSizeMake(itemW, itemH);
     return itemSize;
@@ -74,8 +86,8 @@ static NSString *const ReuseIdentifier = @"itemCell";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
  
     XTCategoryItemCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ReuseIdentifier forIndexPath:indexPath];
-    cell.titleLabelTextColor = self.titleLabelTextColor;
-    cell.titleLabelFont = self.titleLabelFont;
+    cell.titleLabelTextColor = self.configation.titleLabelTextColor;
+    cell.titleLabelFont = self.configation.titleLabelFont;
     if (self.titles.count > indexPath.item && self.images.count > indexPath.item) {
         NSString *title = self.titles[indexPath.item];
         NSString *image = self.images[indexPath.item];
@@ -132,54 +144,6 @@ static NSString *const ReuseIdentifier = @"itemCell";
     }
 }
 
-- (void)setMaxCountAtRow:(NSUInteger)maxCountAtRow {
-    if (_maxCountAtRow != maxCountAtRow) {
-        _maxCountAtRow = maxCountAtRow;
-        if (maxCountAtRow) {
-            [self setupPageControl];
-            [self.collectionView reloadData];
-        }
-    }
-}
-
-- (void)setMaxRow:(NSUInteger)maxRow {
-    if (_maxRow != maxRow) {
-        _maxRow = maxRow;
-        if (maxRow) {
-            [self setupPageControl];
-            [self layoutIfNeeded];
-        }
-    }
-}
-
-- (void)setTitleLabelFont:(UIFont *)titleLabelFont {
-    if (_titleLabelFont != titleLabelFont) {
-        _titleLabelFont = titleLabelFont;
-        [self.collectionView reloadData];
-    }
-}
-
-- (void)setTitleLabelTextColor:(UIColor *)titleLabelTextColor {
-    if (_titleLabelTextColor != titleLabelTextColor) {
-        _titleLabelTextColor = titleLabelTextColor;
-        [self.collectionView reloadData];
-    }
-}
-
-- (void)setPageIndicatorTintColor:(UIColor *)pageIndicatorTintColor {
-    if (_pageIndicatorTintColor != pageIndicatorTintColor) {
-        _pageIndicatorTintColor = pageIndicatorTintColor;
-        self.pageControl.pageIndicatorTintColor = pageIndicatorTintColor;
-    }
-}
-
-- (void)setCurrentPageIndicatorTintColor:(UIColor *)currentPageIndicatorTintColor {
-    if (_currentPageIndicatorTintColor != currentPageIndicatorTintColor) {
-        _currentPageIndicatorTintColor = currentPageIndicatorTintColor;
-        self.pageControl.currentPageIndicatorTintColor = currentPageIndicatorTintColor;
-    }
-}
-
 - (UICollectionViewFlowLayout *)layout
 {
     if (!_layout) {
@@ -187,7 +151,7 @@ static NSString *const ReuseIdentifier = @"itemCell";
         _layout.sectionInset = UIEdgeInsetsZero;
         _layout.minimumLineSpacing = 0;
         _layout.minimumInteritemSpacing = 0;
-        CGFloat itemW = CGRectGetWidth([UIScreen mainScreen].bounds) / self.maxCountAtRow;
+        CGFloat itemW = CGRectGetWidth([UIScreen mainScreen].bounds) / self.configation.maxCountAtRow;
         _layout.itemSize = CGSizeMake(itemW, itemW + 20);
         
     }
@@ -220,12 +184,19 @@ static NSString *const ReuseIdentifier = @"itemCell";
     return _pageControl;
 }
 
+- (XTCategoryConfiguration *)configation {
+    if (!_configation) {
+        _configation = [XTCategoryConfiguration configuration];
+    }
+    return _configation;
+}
+
 #pragma mark- layoutSubviews
 - (void)layoutSubviews {
     [super layoutSubviews];
     if (CGRectIsEmpty(self.frame)) {
-        CGFloat itemW = CGRectGetWidth([UIScreen mainScreen].bounds) / self.maxCountAtRow;
-        CGFloat h = (itemW + 20) * self.maxRow;
+        CGFloat itemW = CGRectGetWidth([UIScreen mainScreen].bounds) / self.configation.maxCountAtRow;
+        CGFloat h = (itemW + 20) * self.configation.maxRow;
         if (self.scrollDirection == XTCategoryItemViewScrollDirectionHorizontal && self.pageControl.numberOfPages > 1) {
             h = h + 20;
         }
